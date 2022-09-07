@@ -35,8 +35,8 @@
 
 # Paths de mi usuario a traves de  mi aplicacion
 
-registrar mi usuario
-loggear mi usuario
+[✅] registrar mi usuario
+[✅] loggear mi usuario
 
 ### Usuario sin sesion iniciada
 
@@ -77,3 +77,22 @@ loggear mi usuario
 9. Eliminar un usuario
 10. Modificar un usuario
 11. Ver lugares de los hosts
+
+
+### Accommodations
+
+/api/v1/accommodations
+
+/
+- GET
+- POST
+
+/:id
+- GET
+- DELETE
+- PUT
+- PATCH
+
+/:id/available/?arrival=value&departure=value
+- GET 
+

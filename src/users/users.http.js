@@ -117,7 +117,6 @@ const edit = (req, res) => {
     !data.rol ||
     !data.profile_image ||
     !data.birthday_date ||
-    !data.country ||
     !data.is_active
   ) {
     return res.status(400).json({
@@ -155,7 +154,6 @@ const editMyUser = (req, res) => {
     !data.phone ||
     !data.profile_image ||
     !data.birthday_date ||
-    !data.country ||
     !data.is_active
   ) {
     return res.status(400).json({
@@ -172,7 +170,7 @@ const editMyUser = (req, res) => {
       },
     });
   } else {
-    const response = userControllers.editUser(id, data)
+    const response = userControllers.editUser(id, data, req.user.rol)
     return res.status(200).json({
       message: 'User edited succesfully',
       user: response

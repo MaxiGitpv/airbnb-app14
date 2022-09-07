@@ -47,10 +47,10 @@ const Users = db.define('users', {
     dni: {
         type: DataTypes.STRING
     },
-    role: {
-        allowNull: false,
-        type: DataTypes.UUID
-    },
+    // role: { 
+    //     allowNull: false,
+    //     type: DataTypes.UUID
+    // },
     address: {
         type: DataTypes.STRING
     },
@@ -60,10 +60,6 @@ const Users = db.define('users', {
             isUrl: true
         },
         field: 'profile_image'
-    },
-    country: {
-        allowNull: false,
-        type: DataTypes.STRING,
     },
     status: {
         allowNull: false,

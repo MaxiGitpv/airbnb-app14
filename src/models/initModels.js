@@ -2,14 +2,15 @@ const Accommodation_images = require("./accommodation_images.model");
 const Accommodations = require("./accommodations.model");
 const Places = require("./places.model");
 const Reservations = require("./reservations.model");
-const Users = require("./users.model");
+const Users = require("./user.model");
 const Users_images = require("./users_images.model");
 const Roles = require("./roles.model");
 
 const initModels = () => {
+
   //? Users <- Roles
+  Roles.hasMany(Users, { foreignKey: { name: "role_id", allowNull: false } });
   Users.belongsTo(Roles);
-  Roles.hasMany(Users);
 
   //? Users -> Users_images
   Users_images.belongsTo(Users);

@@ -3,6 +3,8 @@ const express = require("express");
 const passport = require("passport");
 require("./middleware/auth.middleware")(passport);
 const path = require('path')
+const initModels = require('./models/initModels')
+const defaultData = require('./utils/defaultData')
 //*Archivos de rutas
 const userRouter = require("./users/users.router").router;
 const authRouter = require("./auth/auth.router").router;
@@ -14,13 +16,28 @@ const {db} = require('./utils/database')
 //* Configuraciones iniciales
 const app = express();
 
+initModels()
+
 db.authenticate()
   .then(() => console.log('Database Authenticated'))
   .catch(err => console.log(err))
 
-db.sync()
-  .then(() => console.log('Database synced'))
+if(process.env.NODE_ENV === 'production'){
+  db.sync()
+    .then(() => {
+      console.log('Database synced')
+      defaultData()
+    })
+    .catch(err => console.log(err))
+} else{
+  db.sync({force:true})
+  .then(() => {
+    console.log('Database synced')
+    defaultData()
+  })
   .catch(err => console.log(err))
+}
+
 
 //? Esta configuracion es para habilitar el req.body
 app.use(express.json());
