@@ -48,8 +48,8 @@ const Users = db.define("users", {
   },
   roleId: {
     allowNull: false,
-    type: DataTypes.UUID,
-  },
+    type: DataTypes.UUID
+  }, 
   address: {
     type: DataTypes.STRING,
   },

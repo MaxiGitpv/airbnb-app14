@@ -135,7 +135,7 @@ const getUserWithRole = async (userId) => {
       },
     },
     attributes: {
-      exclude: ["roleId", "createdAt", "updatedAt"],
+      exclude: ["roleId", "createdAt", "updatedAt", "password"],
     },
   });
   return data;
