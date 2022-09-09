@@ -9,7 +9,7 @@ const Roles = require("./roles.model");
 const initModels = () => {
 
   //? Users <- Roles
-  Roles.hasMany(Users, { foreignKey: { name: "role_id", allowNull: false } });
+  Roles.hasMany(Users);
   Users.belongsTo(Roles);
 
   //? Users -> Users_images

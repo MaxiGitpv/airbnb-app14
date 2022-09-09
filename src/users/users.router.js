@@ -24,5 +24,7 @@ router.route('/:id')
     .delete(passport.authenticate('jwt', {session: false}), roleAdminMiddleware, userServices.remove)
     .put(passport.authenticate('jwt', {session: false}), roleAdminMiddleware ,userServices.edit)
 
+router.route('/:id/role')
+    .get(userServices.getUserRole)
 
 exports.router = router

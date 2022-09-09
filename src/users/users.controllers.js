@@ -26,7 +26,7 @@ const userDB = [
 const getAllUsers = async () => {
   const data = await Users.findAll({
     attributes: {
-      exclude: ["password"],
+      exclude: ["password", "createdAt", "updatedAt", "roleId"],
     },
   });
   return data;
@@ -39,7 +39,7 @@ const getUserById = async (id) => {
       id,
     },
     attributes: {
-      exclude: ["password"],
+      exclude: ["password", "createdAt", "updatedAt", "roleId"],
     },
   });
   return data;
@@ -76,15 +76,17 @@ const createUser = async (data) => {
 
 const editUser = async (userId, data, userRol) => {
   const { id, password, verified, role_id, ...restOfProperties } = data;
-  if ('5ee551ed-7bf4-44b0-aeb5-daaa824b9473' === userRol) {
+  if ("5ee551ed-7bf4-44b0-aeb5-daaa824b9473" === userRol) {
     const response = await Users.update(
       { ...restOfProperties, role_id },
       { where: { id: userId } }
     );
-    return response
+    return response;
   } else {
-    const response = await Users.update(restOfProperties, { where: { id: userId } });
-    return response
+    const response = await Users.update(restOfProperties, {
+      where: { id: userId },
+    });
+    return response;
   }
 };
 
@@ -97,19 +99,46 @@ const deleteUser = async (id) => {
   return data;
 };
 
-const getUserByEmail = async(email) => {
-  const data = await Users.findOne({where: {email}})
-  return data
+const getUserByEmail = async (email) => {
+  const data = await Users.findOne({
+    where: { email },
+    attributes: {
+      exclude: ["createdAt", "updatedAt", "roleId"],
+    },
+  });
+  return data;
   //? select * from users where email = ${email};
 };
 
-const editProfileImg = (userID, imgUrl) => {
-  const index = userDB.findIndex((user) => user.id === userID);
-  if (index !== -1) {
-    userDB[index].profile_image = imgUrl;
-    return userDB[index];
-  }
-  return false;
+const editProfileImg = async (userID, imgUrl) => {
+  const data = await Users.update(
+    {
+      profileImage: imgUrl,
+    },
+    {
+      where: { id: userID },
+    }
+  );
+  return data;
+};
+
+const getUserWithRole = async (userId) => {
+  const data = await Users.findOne({
+    where: {
+      id: userId,
+    },
+    include: {
+      model: Roles,
+      as: "role",
+      attributes: {
+        exclude: ["id", "createdAt", "updatedAt"],
+      },
+    },
+    attributes: {
+      exclude: ["roleId", "createdAt", "updatedAt"],
+    },
+  });
+  return data;
 };
 
 module.exports = {
@@ -120,4 +149,5 @@ module.exports = {
   deleteUser,
   getUserByEmail,
   editProfileImg,
+  getUserWithRole,
 };

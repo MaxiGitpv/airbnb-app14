@@ -31,7 +31,21 @@ if(process.env.NODE_ENV === 'production'){
     .catch(err => console.log(err))
 } else{
   db.sync({force:true})
-  .then(() => {
+  .then(() => {if(process.env.NODE_ENV === 'production'){
+    db.sync()
+      .then(() => {
+        console.log('Database synced')
+        defaultData()
+      })
+      .catch(err => console.log(err))
+  } else{
+    db.sync({force:true})
+    .then(() => {
+      console.log('Database synced')
+      defaultData()
+    })
+    .catch(err => console.log(err))
+  }
     console.log('Database synced')
     defaultData()
   })
