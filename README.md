@@ -96,3 +96,5 @@
 /:id/available/?arrival=value&departure=value
 - GET 
 
+# Ejemplo de documentacion 
+https://petstore.swagger.io/v2/swagger.json
