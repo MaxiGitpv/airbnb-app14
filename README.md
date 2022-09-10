@@ -89,7 +89,7 @@
 
 /:id
 - GET
-- DELETEk
+- DELETE
 - PUT
 - PATCH
 

@@ -8,9 +8,10 @@ const defaultData = require('./utils/defaultData')
 //*Archivos de rutas
 const userRouter = require("./users/users.router").router;
 const authRouter = require("./auth/auth.router").router;
+const accomodationRouter = require("./accommodations/accommodations.router").router
 
 const Accommodations = require('./models/accommodations.model')
-
+ 
 //* Configuraciones iniciales
 
 const {db} = require('./utils/database')
@@ -25,7 +26,7 @@ db.authenticate()
   .catch(err => console.log(err))
 
 if(process.env.NODE_ENV === 'production'){
-  db.sync()
+  db.sync() 
     .then(() => {
       console.log('Database synced')
       defaultData()
@@ -73,6 +74,8 @@ app.get("/", async (req, res) => {
 });
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/accommodations", accomodationRouter)
+
 
 app.get("/api/v1/uploads/:imgName", (req ,res) => {
   const imgName = req.params.imgName;
