@@ -96,5 +96,8 @@
 /:id/available/?arrival=value&departure=value
 - GET 
 
+/api/v1/accommodations/:id/make-reservation
+- POST
+
 # Ejemplo de documentacion 
 https://petstore.swagger.io/v2/swagger.json

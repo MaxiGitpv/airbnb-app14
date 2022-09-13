@@ -38,12 +38,19 @@ const getAccommodationById = async (id) => {
     where: {
       id,
     },
-    include: {
+    include:[ {
       model: Places,
       attributes: {
         exclude: ["createdAt", "updatedAt"],
       },
-    },
+    },{
+      model: Users,
+      as: 'user',
+      attributes: {
+        exclude: ["createdAt", "updatedAt"],
+      },
+    }
+  ],
     attributes: {
       exclude: ["createdAt", "updatedAt", "userId", "placeId", "hostId"],
     },
