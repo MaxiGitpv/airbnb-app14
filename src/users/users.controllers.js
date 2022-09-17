@@ -16,7 +16,7 @@ const userDB = [
     birthdayDate: "22/10/2000",
     dni: "",
     address: "",
-    rol: "5ee551ed-7bf4-44b0-aeb5-daaa824b9473",
+    role_id: "5ee551ed-7bf4-44b0-aeb5-daaa824b9473",
     profile_image: "",
     status: "active",
     verified: false,

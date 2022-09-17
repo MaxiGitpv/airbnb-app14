@@ -46,10 +46,6 @@ const Users = db.define("users", {
   dni: {
     type: DataTypes.STRING,
   },
-  roleId: {
-    allowNull: false,
-    type: DataTypes.UUID
-  }, 
   address: {
     type: DataTypes.STRING,
   },
