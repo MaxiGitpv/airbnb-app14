@@ -7,10 +7,10 @@ const Roles = require("../models/roles.model");
 const userDB = [
   {
     id: "74cd6011-7e76-4d6d-b25b-1d6e4182ec2f",
-    firstName: "Sahid",
-    lastName: "Kick",
+    firstName: "Maximo",
+    lastName: "Perea",
     gender: "male",
-    email: "sahid.kick@academlo.com",
+    email: "maximo.pepi@academlo.com",
     password: "$2b$10$TNGcRFonQH98rVqFaBVfpOEEv2Xcu5ej14tWqKim3z3L6Tr.ZIaqC",
     phone: "1234567890",
     birthdayDate: "22/10/2000",
