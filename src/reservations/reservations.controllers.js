@@ -43,5 +43,6 @@ const updateReservation = async (data, reservationId) => {
 
 module.exports = {
     createReservation,
-    getAllReservations
+    getAllReservations,
+    updateReservation
 }
